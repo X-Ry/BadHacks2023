@@ -1,4 +1,3 @@
-FIRST!!!!!!!!!!!
+### Github repo for medium article series
 
-
-(1st file)
+[Part 1:](https://medium.com/p/976555ecba)
