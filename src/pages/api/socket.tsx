@@ -14,6 +14,11 @@ export default function SocketHandler(req, res) {
 
   const onConnection = (socket) => {
     messageHandler(io, socket);
+    // actionHandler(io, socket);
+
+    socket.on("createdAction", (act) => {
+      socket.broadcast.emit("newIncomingAction", act);
+    });
   };
 
   // Define actions inside

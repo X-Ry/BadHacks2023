@@ -1,5 +1,6 @@
 import io from "socket.io-client";
 import { useState, useEffect } from "react";
+import { send } from "process";
 
 let socket;
 
@@ -7,6 +8,18 @@ type Message = {
   author: string;
   message: string;
 };
+
+type Action = {
+  type: ActionType;
+  data: string;
+}
+
+enum ActionType {
+  Popup,
+  Sound,
+  Dox,
+  GiftSwap
+}
 
 export default function Home() {
   const [username, setUsername] = useState("");
@@ -24,23 +37,50 @@ export default function Home() {
 
     socket = io();
 
-    socket.on("newIncomingMessage", (msg) => {
+    socket.on("newIncomingMessage", (msg: Message) => {
       setMessages((currentMsg) => [
         ...currentMsg,
         { author: msg.author, message: msg.message },
       ]);
-      console.log(messages);
+      console.log("incoming message");
+    });
+
+    socket.on("newIncomingAction", (act: Action) => {
+      console.log("recieved action");
+      switch (act.type) {
+        case ActionType.Popup: {
+          alert("what's up");
+          break;
+        } case ActionType.Sound: {
+
+          break;
+        } case ActionType.Dox: {
+          
+          break;
+        } case ActionType.GiftSwap: {
+          
+          break;
+        }
+
+        
+      }
     });
   };
 
   const sendMessage = async () => {
     socket.emit("createdMessage", { author: chosenUsername, message });
+    console.log("sending message");
     setMessages((currentMsg) => [
       ...currentMsg,
-      { author: chosenUsername, message },
+      { author: chosenUsername + " (you)", message },
     ]);
     setMessage("");
   };
+
+  const sendAction = async (at: ActionType) => {
+    socket.emit("createdAction", { type: at, data: "data" });
+    console.log("sending action");
+  }
 
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
@@ -89,6 +129,7 @@ export default function Home() {
                       key={i}
                     >
                       {msg.author} : {msg.message}
+                      {/* {msg.author} {msg.author === username ? "(you)" : ""} : {msg.message} */}
                     </div>
                   );
                 })}
