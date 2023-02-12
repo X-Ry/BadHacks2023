@@ -261,35 +261,39 @@ export default function Home() {
           <div
             className="w-1/2 h-screen flex flex-col
                               bg-cover bg-center bg-[url('https://i.ibb.co/L5xXrzj/istockphoto-486407276-612x612-transformed-1.jpg')]
-                              justify-center"
+                              justify-center content-start"
           >
             {/* Button */}
-            <button
-              className={partnerRequest ? "pushable-request" : "pushable"}
-              onClick={() => {
-                requestLevelUp();
-              }}
-            >
-              <span className={partnerRequest ? "front-request" : "front"}>
-                {partnerRequest
-                  ? "Your partner has taken it to the next level. WILL YOU?"
-                  : "TAKE IT TO THE NEXT LEVEL"}
-              </span>
-            </button>
-
+            <div className="m-2">
+              <button
+                className={partnerRequest ? "pushable-request" : "pushable"}
+                onClick={() => {
+                  requestLevelUp();
+                }}
+              >
+                <span className={partnerRequest ? "front-request font-bold" : "front font-bold"}>
+                  {partnerRequest
+                    ? "Your partner has taken it to the next level. WILL YOU?"
+                    : "TAKE IT TO THE NEXT LEVEL"}
+                </span>
+              </button>
+            </div>
+            
             {actionButtons.map((b, i) => {
               return (level < b.threshold ? <div></div> :
-                <button 
-                  key={i}
-                  className={partnerRequest ? "pushable-request" : "pushable"}
-                  onClick={() => {
-                    console.log("sending action: " + b.text);
-                    sendAction(b.at);
-                  }}>
-                    <span className={partnerRequest ? "front-request" : "front"}>
-                      {b.text}
-                    </span>
-                </button>
+                <div className="m-2">
+                  <button 
+                    key={i}
+                    className={partnerRequest ? "pushable-request" : "pushable"}
+                    onClick={() => {
+                      console.log("sending action: " + b.text);
+                      sendAction(b.at);
+                    }}>
+                      <span className={partnerRequest ? "front-request" : "front"}>
+                        {b.text}
+                      </span>
+                  </button>
+                </div>
               );
             })}
 
