@@ -282,11 +282,13 @@ export default function Home() {
               back are {pCreditCardCVC}.
             </p>
           </div>
-
           <div className="w-1/2 h-screen bg-purple-500">
             <>
               <p className="font-bold text-center text-white text-3xl">
                 Level: {level}
+              </p>
+              <p className="font-bold text-center text-white text-xl">
+                Your name: {myProfile.name}
               </p>
 
               <div className="flex flex-col justify-end bg-white h-[30rem] min-w-[33%] rounded-md shadow-md ">
@@ -328,10 +330,46 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <p className="font-bold text-white text-xl">
-                Your name: {myProfile.name}
-              </p>
             </>
+
+            <div className="ml-3">
+              <div className="font-bold text-white text-xl">
+                Your leverage over your partner at Level {level}:
+              </div>
+              <div className="ml-2">
+                {level === 0 ? (
+                  <div className="text-white text-xl">Level 0. Nothing...</div>
+                ) : null}
+                {level > 0 ? (
+                  <div className="text-white text-xl">
+                    Level 1. Their name...
+                  </div>
+                ) : null}
+                {level > 1 ? (
+                  <div className="text-white text-xl">
+                    Level 2. Send Browser Alert
+                  </div>
+                ) : null}
+                {level > 2 ? (
+                  <div className="text-white text-xl">
+                    Level 3. Their Age...
+                  </div>
+                ) : null}
+                {level > 3 ? (
+                  <div className="text-white text-xl">
+                    Level 4. Sound Alarm on Their Computer
+                  </div>
+                ) : null}
+                {level > 4 ? (
+                  <div className="text-white text-xl">
+                    Level 5. Name of their Pet...
+                  </div>
+                ) : null}
+                {level > 5 ? (
+                  <div className="text-white text-xl">Level 6. Dox Partner</div>
+                ) : null}
+              </div>
+            </div>
           </div>
 
           <div
