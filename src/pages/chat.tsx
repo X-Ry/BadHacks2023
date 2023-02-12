@@ -356,7 +356,7 @@ export default function Home() {
                 ) : null}
                 {level > 1 ? (
                   <div className="text-white text-xl">
-                    Level 2. Send Browser Alert
+                    Level 2. Notify your friend!
                   </div>
                 ) : null}
                 {level > 2 ? (
@@ -366,16 +366,48 @@ export default function Home() {
                 ) : null}
                 {level > 3 ? (
                   <div className="text-white text-xl">
-                    Level 4. Sound Alarm on Their Computer
+                    Level 4. Get your friend's attention!
                   </div>
                 ) : null}
                 {level > 4 ? (
                   <div className="text-white text-xl">
-                    Level 5. Name of their Pet...
+                    Level 5. Their mother's maiden name...
                   </div>
                 ) : null}
                 {level > 5 ? (
-                  <div className="text-white text-xl">Level 6. Dox Partner</div>
+                  <div className="text-white text-xl">
+                    Level 6. Dox your partner!
+                  </div>
+                ) : null}
+                {level > 6 ? (
+                  <div className="text-white text-xl">
+                    Level 7. Their IP address...
+                  </div>
+                ) : null}
+                {level > 7 ? (
+                  <div className="text-white text-xl">
+                    Level 8. Send your partner a gift!
+                  </div>
+                ) : null}
+                {level > 8 ? (
+                  <div className="text-white text-xl">
+                    Level 9. Their live location...
+                  </div>
+                ) : null}
+                {level > 9 ? (
+                  <div className="text-white text-xl">
+                    Level 10. Steal your friends identity!
+                  </div>
+                ) : null}
+                {level > 10 ? (
+                  <div className="text-white text-xl">
+                    Level 11. Scramble their Hard-drive!
+                  </div>
+                ) : null}
+                {level > 11 ? (
+                  <div className="text-white text-xl">
+                    Level 12. Take their credit card info!
+                  </div>
                 ) : null}
               </div>
             </div>
