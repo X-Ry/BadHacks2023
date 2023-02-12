@@ -392,7 +392,7 @@ export default function Home() {
             {/* Button */}
             <div className="m-2">
               <button
-                className={partnerRequest ? "pushable-request" : "pushable"}
+                className={partnerRequest ? "pushable-request w-full" : "pushable w-full"}
                 onClick={() => {
                   requestLevelUp();
                 }}
@@ -418,7 +418,7 @@ export default function Home() {
                 <div className="m-2">
                   <button
                     key={i}
-                    className="pushable"
+                    className="pushable w-full"
                     onClick={() => {
                       console.log("sending action: " + b.text);
                       sendAction(b.at);
