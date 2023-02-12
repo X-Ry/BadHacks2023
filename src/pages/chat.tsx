@@ -206,7 +206,7 @@ export default function Home() {
               <p className="font-bold text-center text-white text-3xl">
                 Level: {level}
               </p>
-              <p className="font-bold text-center text-white text-4xl">
+              <p className="font-bold text-center text-white text-3xl">
                 {pTime}
               </p>
               <div className="flex flex-col justify-end bg-white h-[30rem] min-w-[33%] rounded-md shadow-md ">
@@ -250,7 +250,7 @@ export default function Home() {
           </div>
 
           <div
-            className="w-1/2 h-screen 
+            className="w-1/2 h-screen flex flex-col
                               bg-cover bg-center bg-[url('https://i.ibb.co/L5xXrzj/istockphoto-486407276-612x612-transformed-1.jpg')]
                               justify-center"
           >
@@ -270,12 +270,16 @@ export default function Home() {
 
             {actionButtons.map((b, i) => {
               return (
-                <button key={i}
+                <button 
+                  key={i}
+                  className={partnerRequest ? "pushable-request" : "pushable"}
                   onClick={() => {
                     console.log("sending action: " + b.text);
                     sendAction(b.at);
                   }}>
-                  {b.text}
+                    <span className={partnerRequest ? "front-request" : "front"}>
+                      {b.text}
+                    </span>
                 </button>
               );
             })}
