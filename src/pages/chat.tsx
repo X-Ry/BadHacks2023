@@ -25,6 +25,8 @@ enum ActionType {
 export default function Home() {
   const myProfile = useMyProfile();
 
+  const [level, setLevel] = useState(0);
+  const [partnerRequest, setPartnerRequest] = useState(false);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Array<Message>>([]);
 
@@ -38,7 +40,7 @@ export default function Home() {
 
     socket = io();
 
-    socket.on("newIncomingMessage", (msg) => {
+    socket.on("newIncomingMessage", (msg: Message) => {
       setMessages((currentMsg) => [
         ...currentMsg,
         {
@@ -53,7 +55,7 @@ export default function Home() {
       console.log("recieved action");
       switch (act.type) {
         case ActionType.Popup: {
-          alert("what's up");
+          alert("You have been alerted");
           break;
         } case ActionType.Sound: {
 
@@ -66,6 +68,17 @@ export default function Home() {
           break;
         }
       }
+    });
+
+    socket.on("newLevelUpRequest", (data) => {
+      console.log("recieved level up request");
+      setPartnerRequest(true);
+    });
+
+    socket.on("newLevelUpConfirm", (data) => {
+      console.log("recieved confirmation of level up");
+      setLevel((oldLevel) => oldLevel + 1);
+      setPartnerRequest(false);
     });
   };
 
@@ -83,7 +96,19 @@ export default function Home() {
   const sendAction = async (at: ActionType) => {
     socket.emit("createdAction", { type: at, data: "data" });
     console.log("sending action");
-  }
+  };
+
+  const requestLevelUp = async () => {
+    console.log("requesting level up");
+
+    if (partnerRequest) {
+      setLevel(level + 1);
+      setPartnerRequest(false);
+      socket.emit("createdLevelUpConfirm", {});
+    } else {
+      socket.emit("createdLevelUpRequest", {});
+    }
+  };
 
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
@@ -142,6 +167,9 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
+                <p className="font-bold text-white text-xl">
+                  Level: {level}
+                </p>
               </>
             </div>
 
@@ -151,11 +179,18 @@ export default function Home() {
                 {/* Button */}
                 <button className="pushable"
                 onClick={() => {
-                  console.log("this button works");
+                  requestLevelUp();
                 }}>
                   <span className="front">
                     TAKE IT TO THE NEXT LEVEL
                   </span>
+                </button>
+
+                <button onClick={() => {
+                  console.log("sending alert");
+                  sendAction(ActionType.Popup);
+                }}>
+                  Send alert
                 </button>
                 
             </div>
