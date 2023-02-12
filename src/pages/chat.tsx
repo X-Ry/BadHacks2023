@@ -200,7 +200,7 @@ export default function Home() {
     // name
 
     console.log("updating profile");
-    if (newLevel === 11) {
+    if (newLevel === 12) {
       setCreditCardCVC(randInt(100, 999));
       setCreditCardExpirationDate(`${randInt(1, 13)}/${randInt(23, 30)}`);
       setCreditCardNumber(
@@ -209,6 +209,8 @@ export default function Home() {
           9999
         )} ${randInt(1000, 9999)}`
       );
+    }
+    if (newLevel === 11) {
     }
     if (newLevel == 9) {
       setLon("87.6753° W");
@@ -392,7 +394,9 @@ export default function Home() {
             {/* Button */}
             <div className="m-2">
               <button
-                className={partnerRequest ? "pushable-request w-full" : "pushable w-full"}
+                className={
+                  partnerRequest ? "pushable-request w-full" : "pushable w-full"
+                }
                 onClick={() => {
                   requestLevelUp();
                 }}
