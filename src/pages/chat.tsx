@@ -232,11 +232,10 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex items-center mx-auto min-h-screen justify-center bg-green-500">
+    <div className="flex items-center mx-auto min-h-screen justify-center bg-purple-500">
       <main className="w-full gap-4 flex flex-col items-center justify-center h-full">
           <div className="w-full flex items-center mx-auto min-h-screen justify-center">
-            
-            <div className="w-1/2 h-screen bg-black text-green-500 p-2 font-mono overflow-auto">
+            <div className="w-1/2 h-screen bg-black text-green-500 m-4 p-2 font-mono overflow-auto">
               <p className=" text-xl">Profile Info</p>
               {/* add a photograph area here too */}
               <p>Your Partner's name is {pName}.</p> 
@@ -308,8 +307,8 @@ export default function Home() {
           </div>
 
           <div
-            className="w-1/2 h-screen flex flex-col
-                              bg-cover bg-center bg-[url('https://i.ibb.co/L5xXrzj/istockphoto-486407276-612x612-transformed-1.jpg')]
+            className="w-1/2 h-screen flex flex-col m-4
+                              bg-cover bg-center bg-[url('https://i.ibb.co/GRwn5px/image-2.png')]
                               justify-center content-start"
           >
             {/* Button */}
