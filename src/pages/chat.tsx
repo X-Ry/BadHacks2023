@@ -31,6 +31,8 @@ export default function Home() {
   const [level, setLevel] = useState(0);
   const [partnerRequest, setPartnerRequest] = useState(false);
   const [message, setMessage] = useState("");
+
+  //Profile Personal Information
   const [pName, setName] = useState("██████ ████████████");
   const [pAge, setAge] = useState("██");
   const [pBirthday, setBirthday] = useState("██/██/██");
@@ -55,6 +57,10 @@ export default function Home() {
   const [pCreditCardNumber, setCreditCardNumber] = useState("█ █████ ██████ ████");
   const [pCreditCardExpirationDate, setCreditCardExpirationDate] = useState("██/██");
   const [pCreditCardCVC, setCreditCardCVC] = useState("███");
+
+  // Countdown Timer
+  const [pTime, setTime] = useState("");
+
   
   const [messages, setMessages] = useState<Array<Message>>([]);
 
@@ -170,12 +176,12 @@ export default function Home() {
               <p>Their email address is {pEmail}.</p>
               <p>Longitude: {pLon}. Latitude: {pLat}.</p>
               <p>Their favorite ice cream flavor is {pIceCream}.</p>
-              <p>Their political alignment is {pPoliticalAlignment}</p>
+              <p>Their political alignment is {pPoliticalAlignment}.</p>
               <p>Family: {pFamily}.</p>
               <p>Pets: {pPets}.</p>
               <p>Their IP address is {pIPAddress}.</p>
               <p>Their social security number is {pSocialSecurity}.</p>
-              <p>Their Mother's maiden name is {pMothersMaidenName}</p>
+              <p>Their mother's maiden name is {pMothersMaidenName}.</p>
               <p>They are from {pBirthplace} and the name of the street that they grew up on is {pStreetGrewUpOn}.</p>
               <p>Their credit card number is {pCreditCardNumber}, the expiration date is {pCreditCardExpirationDate}, and the three numbers on the back are {pCreditCardCVC}.</p>
 
@@ -183,8 +189,11 @@ export default function Home() {
 
           <div className="w-1/2 h-screen bg-purple-500">
             <>
-              <p className="font-bold text-white text-xl">
-                Your name: {myProfile.name}
+              <p className="font-bold text-center text-white text-3xl">
+                Level: {level}
+              </p>
+              <p className="font-bold text-center text-white text-4xl">
+                {pTime}
               </p>
               <div className="flex flex-col justify-end bg-white h-[30rem] min-w-[33%] rounded-md shadow-md ">
                 <div className="h-full last:border-b-0 overflow-y-scroll">
@@ -220,7 +229,9 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <p className="font-bold text-white text-xl">Level: {level}</p>
+              <p className="font-bold text-white text-xl">
+                Your name: {myProfile.name}
+              </p>
             </>
           </div>
 
