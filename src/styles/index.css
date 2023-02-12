@@ -1,27 +1,46 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
 
 /* Your own custom component styles */
 
-@import 'tailwindcss/utilities';
+@import "tailwindcss/utilities";
 .pushable {
-    background: hsl(340deg 100% 32%);
-    border-radius: 12px;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    outline-offset: 4px;
-  }
-  .front {
-    display: block;
-    padding: 12px 42px;
-    border-radius: 12px;
-    font-size: 1.25rem;
-    background: hsl(345deg 100% 47%);
-    color: white;
-    transform: translateY(-6px);
-  }
+  background: hsl(340deg 100% 32%);
+  border-radius: 12px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  max-width: 28em;
+}
+.pushable-request {
+  background: hsl(112, 100%, 42%);
+  border-radius: 12px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  max-width: 28em;
+}
+.front {
+  display: block;
+  padding: 12px 42px;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  background: hsl(345deg 100% 47%);
+  color: white;
+  transform: translateY(-6px);
+}
+.front-request {
+  display: block;
+  padding: 12px 42px;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  background: hsl(115, 100%, 56%);
+  color: black;
+  transform: translateY(-6px);
+}
 
-  .pushable:active .front {
-    transform: translateY(-2px);
-  }
+.pushable:active .front {
+  transform: translateY(-2px);
+}

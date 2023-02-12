@@ -48,14 +48,19 @@ export default function Home() {
   const [pLat, setLat] = useState('███.█████"█');
   const [pIceCream, setIceCream] = useState("████████ ████ ██████");
   const [pPoliticalAlignment, setPoliticalAlignment] = useState("████████████");
-  const [pFamily, setFamily] = useState("██████████ ████████ ███ ███████ ██ ███████");
+  const [pFamily, setFamily] = useState(
+    "██████████ ████████ ███ ███████ ██ ███████"
+  );
   const [pPets, setPets] = useState("█████████ ████ █████████");
   const [pIPAddress, setIPAddress] = useState("███.███.██.██");
   const [pSocialSecurity, setSocialSecurity] = useState("███-██-████");
   const [pMothersMaidenName, setMothersMaidenName] = useState("███████");
   const [pStreetGrewUpOn, setStreetGrewUpOn] = useState("████████████");
-  const [pCreditCardNumber, setCreditCardNumber] = useState("█ █████ ██████ ████");
-  const [pCreditCardExpirationDate, setCreditCardExpirationDate] = useState("██/██");
+  const [pCreditCardNumber, setCreditCardNumber] = useState(
+    "█ █████ ██████ ████"
+  );
+  const [pCreditCardExpirationDate, setCreditCardExpirationDate] =
+    useState("██/██");
   const [pCreditCardCVC, setCreditCardCVC] = useState("███");
 
   // Countdown Timer
@@ -99,12 +104,15 @@ export default function Home() {
           break;
         }
         case ActionType.Sound: {
+          console.log("LOUD SOUND");
           break;
         }
         case ActionType.Dox: {
+          console.log("get doxxed bro");
           break;
         }
         case ActionType.GiftSwap: {
+          console.log("items have been purchased using your account");
           break;
         }
       }
@@ -135,7 +143,6 @@ export default function Home() {
 
   const sendAction = async (at: ActionType) => {
     socket.emit("createdAction", { type: at, data: "data" });
-    console.log("sending action");
   };
 
   const requestLevelUp = async () => {
@@ -158,6 +165,13 @@ export default function Home() {
       }
     }
   };
+
+  const actionButtons = [
+    {text: "Send Alert", at: ActionType.Popup, threshold: 1},
+    {text: "Sound Alarm", at: ActionType.Sound, threshold: 2},
+    {text: "Dox Partner", at: ActionType.Dox, threshold: 3},
+    {text: "Purchase Gift", at: ActionType.GiftSwap, threshold: 4},
+  ];
 
   return (
     <div className="flex items-center mx-auto min-h-screen justify-center bg-green-500">
@@ -242,22 +256,31 @@ export default function Home() {
           >
             {/* Button */}
             <button
-              className="pushable"
+              className={partnerRequest ? "pushable-request" : "pushable"}
               onClick={() => {
                 requestLevelUp();
               }}
             >
-              <span className="front">TAKE IT TO THE NEXT LEVEL</span>
+              <span className={partnerRequest ? "front-request" : "front"}>
+                {partnerRequest
+                  ? "Your partner has taken it to the next level. WILL YOU?"
+                  : "TAKE IT TO THE NEXT LEVEL"}
+              </span>
             </button>
 
-            <button
-              onClick={() => {
-                console.log("sending alert");
-                sendAction(ActionType.Popup);
-              }}
-            >
-              Send alert
-            </button>
+            {actionButtons.map((b, i) => {
+              return (
+                <button
+                  onClick={() => {
+                    console.log("sending action: " + b.text);
+                    sendAction(b.at);
+                  }}>
+                  {b.text}
+                </button>
+              );
+            })}
+
+            
           </div>
         </div>
       </main>
