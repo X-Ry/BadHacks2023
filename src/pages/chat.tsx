@@ -32,6 +32,7 @@ export default function Home() {
   const [partnerRequest, setPartnerRequest] = useState(false);
   const [message, setMessage] = useState("");
 
+  //Profile Personal Information
   const [pName, setName] = useState("██████ ████████████");
   const [pAge, setAge] = useState("██");
   const [pBirthday, setBirthday] = useState("██/██/██");
@@ -62,6 +63,10 @@ export default function Home() {
     useState("██/██");
   const [pCreditCardCVC, setCreditCardCVC] = useState("███");
 
+  // Countdown Timer
+  const [pTime, setTime] = useState("");
+
+  
   const [messages, setMessages] = useState<Array<Message>>([]);
 
   useEffect(() => {
@@ -171,49 +176,38 @@ export default function Home() {
   return (
     <div className="flex items-center mx-auto min-h-screen justify-center bg-green-500">
       <main className="w-full gap-4 flex flex-col items-center justify-center h-full">
-        <div className="w-full flex items-center mx-auto min-h-screen justify-center">
-          <div className="w-1/2 h-screen bg-black text-green-500 p-2 font-mono overflow-auto">
-            <p className=" text-xl">Profile Info</p>
-            {/* add a photograph area here too */}
-            <img src="/images/blank_profile_pic.jpeg" width="70px" />
-            <p>Your Partner's name is {pName}.</p>
-            <p>
-              They are {pAge} years old, and were born on {pBirthday}.
-            </p>
-            <p>
-              Their gender is {pGender} and sexuality is {pSexuality}.
-            </p>
-            <p>They currently live at the address {pAddress}.</p>
-            <p>
-              They are a {pProfession} at {pWorkplace}.
-            </p>
-            <p>Their phone number is {pPhone}.</p>
-            <p>Their email address is {pEmail}.</p>
-            <p>
-              Longitude: {pLon}. Latitude: {pLat}.
-            </p>
-            <p>Their favorite ice cream flavor is {pIceCream}.</p>
-            <p>Their political alignment is {pPoliticalAlignment}</p>
-            <p>Family: {pFamily}.</p>
-            <p>Pets: {pPets}.</p>
-            <p>Their IP address is {pIPAddress}.</p>
-            <p>Their social security number is {pSocialSecurity}.</p>
-            <p>Their Mother's maiden name is {pMothersMaidenName}</p>
-            <p>
-              They are from {pBirthplace} and the name of the street that they
-              grew up on is {pStreetGrewUpOn}.
-            </p>
-            <p>
-              Their credit card number is {pCreditCardNumber}, the expiration
-              date is {pCreditCardExpirationDate}, and the three numbers on the
-              back are {pCreditCardCVC}.
-            </p>
-          </div>
+          <div className="w-full flex items-center mx-auto min-h-screen justify-center">
+            
+            <div className="w-1/2 h-screen bg-black text-green-500 p-2 font-mono overflow-auto">
+              <p className=" text-xl">Profile Info</p>
+              {/* add a photograph area here too */}
+              <p>Your Partner's name is {pName}.</p> 
+              <p>They are {pAge} years old, and were born on {pBirthday}.</p>
+              <p>Their gender is {pGender} and sexuality is {pSexuality}.</p>
+              <p>They currently live at the address {pAddress}.</p>
+              <p>They are a {pProfession} at {pWorkplace}.</p>
+              <p>Their phone number is {pPhone}.</p>
+              <p>Their email address is {pEmail}.</p>
+              <p>Longitude: {pLon}. Latitude: {pLat}.</p>
+              <p>Their favorite ice cream flavor is {pIceCream}.</p>
+              <p>Their political alignment is {pPoliticalAlignment}.</p>
+              <p>Family: {pFamily}.</p>
+              <p>Pets: {pPets}.</p>
+              <p>Their IP address is {pIPAddress}.</p>
+              <p>Their social security number is {pSocialSecurity}.</p>
+              <p>Their mother's maiden name is {pMothersMaidenName}.</p>
+              <p>They are from {pBirthplace} and the name of the street that they grew up on is {pStreetGrewUpOn}.</p>
+              <p>Their credit card number is {pCreditCardNumber}, the expiration date is {pCreditCardExpirationDate}, and the three numbers on the back are {pCreditCardCVC}.</p>
+
+            </div>
 
           <div className="w-1/2 h-screen bg-purple-500">
             <>
-              <p className="font-bold text-white text-xl">
-                Your name: {myProfile.name}
+              <p className="font-bold text-center text-white text-3xl">
+                Level: {level}
+              </p>
+              <p className="font-bold text-center text-white text-4xl">
+                {pTime}
               </p>
               <div className="flex flex-col justify-end bg-white h-[30rem] min-w-[33%] rounded-md shadow-md ">
                 <div className="h-full last:border-b-0 overflow-y-scroll">
@@ -249,7 +243,9 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <p className="font-bold text-white text-xl">Level: {level}</p>
+              <p className="font-bold text-white text-xl">
+                Your name: {myProfile.name}
+              </p>
             </>
           </div>
 
