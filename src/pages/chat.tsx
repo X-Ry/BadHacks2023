@@ -31,6 +31,7 @@ export default function Home() {
 
   const [level, setLevel] = useState(0);
   const [partnerRequest, setPartnerRequest] = useState(false);
+  const [partnerRequestData, setPartnerRequestData] = useState({});
   const [message, setMessage] = useState("");
 
   //Profile Personal Information
@@ -126,13 +127,14 @@ export default function Home() {
     socket.on("newLevelUpRequest", (data) => {
       console.log("recieved level up request");
       setPartnerRequest(true);
+      setPartnerRequestData(data);
     });
 
     socket.on("newLevelUpConfirm", (data) => {
       console.log("recieved confirmation of level up");
       setPartnerRequest(false);
       setLevel((oldLevel) => {
-        updateProfile(oldLevel + 1);
+        updateProfile(oldLevel + 1, data);
         return oldLevel + 1;
       });
     });
@@ -163,15 +165,22 @@ export default function Home() {
   const requestLevelUp = async () => {
     console.log("requesting level up");
 
+    let data = {}
+    if (level === 0) {
+      data["name"] = myProfile.name;
+    } else if (level === 1) {
+      data["email"] = myProfile.email;
+    }
+
     if (partnerRequest) {
       setPartnerRequest(false);
       setLevel((oldLevel) => {
-        updateProfile(oldLevel + 1);
+        updateProfile(oldLevel + 1, partnerRequestData);
         return oldLevel + 1;
       });
-      socket.emit("createdLevelUpConfirm", {});
+      socket.emit("createdLevelUpConfirm", data);
     } else {
-      socket.emit("createdLevelUpRequest", {});
+      socket.emit("createdLevelUpRequest", data);
     }
   };
 
@@ -179,7 +188,7 @@ export default function Home() {
     return Math.floor(Math.random() * (maxE - minI)) + minI;
   };
 
-  const updateProfile = (newLevel: number) => {
+  const updateProfile = (newLevel, data) => {
     // credit cards
     // social security
     // mother's maiden name
@@ -213,9 +222,9 @@ export default function Home() {
       setAge(fakeAge);
       setBirthday(`${randInt(1, 13)}/${randInt(1, 30)}/${123 - fakeAge}`);
     } else if (newLevel == 2) {
-      setEmail("wowthisissucha@gooddemo.com");
+      setEmail("email" in data ? data["email"] : "wowthisisagood@demo.com");
     } else if (newLevel == 1) {
-      setName("Ryan");
+      setName("name" in data ? data["name"] : "Ryan");
     }
   };
 
@@ -243,10 +252,10 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex items-center mx-auto min-h-screen justify-center bg-green-500">
+    <div className="flex items-center mx-auto min-h-screen justify-center bg-purple-500">
       <main className="w-full gap-4 flex flex-col items-center justify-center h-full">
         <div className="w-full flex items-center mx-auto min-h-screen justify-center">
-          <div className="w-1/2 h-screen bg-black text-green-500 p-2 font-mono overflow-auto">
+            <div className="w-1/2 h-screen bg-black text-green-500 m-4 p-2 font-mono overflow-auto">
             <p className=" text-xl">Profile Info</p>
             {/* add a photograph area here too */}
             <p>Your Partner's name is {pName}.</p>
@@ -373,8 +382,8 @@ export default function Home() {
           </div>
 
           <div
-            className="w-1/2 h-screen flex flex-col
-                              bg-cover bg-center bg-[url('https://i.ibb.co/L5xXrzj/istockphoto-486407276-612x612-transformed-1.jpg')]
+            className="w-1/2 h-screen flex flex-col m-4
+                              bg-cover bg-center bg-[url('https://i.ibb.co/GRwn5px/image-2.png')]
                               justify-center content-start"
           >
             {/* Button */}
