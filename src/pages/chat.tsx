@@ -130,8 +130,11 @@ export default function Home() {
 
     socket.on("newLevelUpConfirm", (data) => {
       console.log("recieved confirmation of level up");
-      setLevel((oldLevel) => oldLevel + 1);
       setPartnerRequest(false);
+      setLevel((oldLevel) => {
+        updateProfile(oldLevel + 1);
+        return oldLevel + 1;
+      });
     });
   };
 
@@ -154,11 +157,56 @@ export default function Home() {
     console.log("requesting level up");
 
     if (partnerRequest) {
-      setLevel(level + 1);
       setPartnerRequest(false);
+      setLevel((oldLevel) => {
+        updateProfile(oldLevel + 1);
+        return oldLevel + 1;
+      });
       socket.emit("createdLevelUpConfirm", {});
     } else {
       socket.emit("createdLevelUpRequest", {});
+    }
+  };
+
+  const randInt = (minI, maxE) => {
+    return Math.floor(Math.random() * (maxE - minI)) + minI;
+  }
+
+  const updateProfile = (newLevel) => {
+    // credit cards
+    // social security
+    // mother's maiden name
+    // location
+    // pets
+    // IP
+    // age
+    // email
+    // name
+
+    console.log("updating profile");
+
+    if (newLevel == 9) {
+      setCreditCardCVC(randInt(100, 999));
+      setCreditCardExpirationDate(`${randInt(1, 13)}/${randInt(23, 30)}`);
+      setCreditCardNumber(`${randInt(1000, 9999)} ${randInt(1000, 9999)} ${randInt(1000, 9999)} ${randInt(1000, 9999)}`);
+    } else if (newLevel == 8) {
+
+    } else if (newLevel == 7) {
+
+    } else if (newLevel == 6) {
+      
+    } else if (newLevel == 5) {
+      setPets("Mittins (cat)")
+    } else if (newLevel == 4) {
+      setIPAddress("127.0.0.1");
+    } else if (newLevel == 3) {
+      const fakeAge = randInt(18, 60);
+      setAge(fakeAge);
+      setBirthday(`${randInt(1, 13)}/${randInt(1, 30)}/${123 - fakeAge}`);
+    } else if (newLevel == 2) {
+      setEmail("wowthisissucha@gooddemo.com");
+    } else if (newLevel == 1) {
+      setName("Ryan");
     }
   };
 
@@ -172,13 +220,13 @@ export default function Home() {
   };
 
   const actionButtons = [
-    {text: "Send Alert", at: ActionType.Popup, threshold: 1},
-    {text: "Sound Alarm", at: ActionType.Sound, threshold: 2},
-    {text: "Dox Partner", at: ActionType.Dox, threshold: 3},
-    {text: "Purchase Gift", at: ActionType.GiftSwap, threshold: 4},
-    {text: "Steal Identity", at: ActionType.NotImplemented, threshold: 5},
-    {text: "Scramble Hard-drive", at: ActionType.NotImplemented, threshold: 6},
-    {text: "Empty 401k", at: ActionType.NotImplemented, threshold: 7},
+    {text: "Send Alert", at: ActionType.Popup, threshold: 2},
+    {text: "Sound Alarm", at: ActionType.Sound, threshold: 4},
+    {text: "Dox Partner", at: ActionType.Dox, threshold: 6},
+    {text: "Purchase Gift", at: ActionType.GiftSwap, threshold: 8},
+    {text: "Steal Identity", at: ActionType.NotImplemented, threshold: 10},
+    {text: "Scramble Hard-drive", at: ActionType.NotImplemented, threshold: 11},
+    {text: "Empty 401k", at: ActionType.NotImplemented, threshold: 12},
 
   ];
 
