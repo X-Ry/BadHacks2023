@@ -26,6 +26,31 @@ export default function Home() {
   const myProfile = useMyProfile();
 
   const [message, setMessage] = useState("");
+  const [pName, setName] = useState("██████ ████████████");
+  const [pAge, setAge] = useState("██");
+  const [pBirthday, setBirthday] = useState("██/██/██");
+  const [pGender, setGender] = useState("█████");
+  const [pSexuality, setSexuality] = useState("████████");
+  const [pBirthplace, setBirthplace] = useState("███████████");
+  const [pAddress, setAddress] = useState("██████████████████████████████");
+  const [pProfession, setProfession] = useState("██████████");
+  const [pWorkplace, setWorkplace] = useState("██████████");
+  const [pPhone, setPhone] = useState("███-███-████");
+  const [pEmail, setEmail] = useState("████████████@█████.███");
+  const [pLon, setLon] = useState('███.█████"█');
+  const [pLat, setLat] = useState('███.█████"█');
+  const [pIceCream, setIceCream] = useState("████████ ████ ██████");
+  const [pPoliticalAlignment, setPoliticalAlignment] = useState("████████████");
+  const [pFamily, setFamily] = useState("██████████ ████████ ███ ███████ ██ ███████");
+  const [pPets, setPets] = useState("█████████");
+  const [pIPAddress, setIPAddress] = useState("███.███.██.██");
+  const [pSocialSecurity, setSocialSecurity] = useState("███-██-████");
+  const [pMothersMaidenName, setMothersMaidenName] = useState("███████");
+  const [pStreetGrewUpOn, setStreetGrewUpOn] = useState("████████████");
+  const [pCreditCardNumber, setCreditCardNumber] = useState("█ █████ ██████ ████");
+  const [pCreditCardExpirationDate, setCreditCardExpirationDate] = useState("██/██");
+  const [pCreditCardCVC, setCreditCardCVC] = useState("███");
+  
   const [messages, setMessages] = useState<Array<Message>>([]);
 
   useEffect(() => {
@@ -99,8 +124,27 @@ export default function Home() {
       <main className="w-full gap-4 flex flex-col items-center justify-center h-full">
           <div className="w-full flex items-center mx-auto min-h-screen justify-center">
             
-            <div className="w-1/2 h-screen bg-gray-500 p-2 hover:bg-gradient-to-r">
-              <p className="w-1/2 h-full font-bold text-white text-xl">Profile Info</p>
+            <div className="w-1/2 h-screen bg-black text-green-500 p-2 font-mono">
+              <p className=" text-xl">Profile Info</p>
+              {/* add a photograph area here too */}
+              <p>Your Partner's name is {pName}.</p> 
+              <p>They are {pAge} years old, and were born on {pBirthday}.</p>
+              <p>Their gender is {pGender} and sexuality is {pSexuality}.</p>
+              <p>They currently live at the address {pAddress}.</p>
+              <p>They are a {pProfession} at {pWorkplace}.</p>
+              <p>Their phone number is {pPhone}.</p>
+              <p>Their email address is {pEmail}.</p>
+              <p>Longitude: {pLon}. Latitude: {pLat}.</p>
+              <p>Their favorite ice cream flavor is {pIceCream}.</p>
+              <p>Their political alignment is {pPoliticalAlignment}</p>
+              <p>Family: {pFamily}.</p>
+              <p>Pets: {pPets}.</p>
+              <p>Their IP address is {pIPAddress}.</p>
+              <p>Their social security number is {pSocialSecurity}.</p>
+              <p>Their Mother's Maiden Name is {pMothersMaidenName}</p>
+              <p>They are from {pBirthplace} and the name of the street that they grew up on is {pStreetGrewUpOn}.</p>
+              <p>Their credit card number is {pCreditCardNumber}, the expiration date is {pCreditCardExpirationDate}, and the three numbers on the back are {pCreditCardCVC}.</p>
+
             </div>
 
             <div className="w-1/2 h-screen bg-purple-500">
