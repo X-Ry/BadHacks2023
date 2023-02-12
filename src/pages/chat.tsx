@@ -47,7 +47,7 @@ export default function Home() {
   const [pIceCream, setIceCream] = useState("████████ ████ ██████");
   const [pPoliticalAlignment, setPoliticalAlignment] = useState("████████████");
   const [pFamily, setFamily] = useState("██████████ ████████ ███ ███████ ██ ███████");
-  const [pPets, setPets] = useState("█████████");
+  const [pPets, setPets] = useState("█████████ ████ █████████");
   const [pIPAddress, setIPAddress] = useState("███.███.██.██");
   const [pSocialSecurity, setSocialSecurity] = useState("███-██-████");
   const [pMothersMaidenName, setMothersMaidenName] = useState("███████");
@@ -158,7 +158,7 @@ export default function Home() {
       <main className="w-full gap-4 flex flex-col items-center justify-center h-full">
           <div className="w-full flex items-center mx-auto min-h-screen justify-center">
             
-            <div className="w-1/2 h-screen bg-black text-green-500 p-2 font-mono">
+            <div className="w-1/2 h-screen bg-black text-green-500 p-2 font-mono overflow-auto">
               <p className=" text-xl">Profile Info</p>
               {/* add a photograph area here too */}
               <p>Your Partner's name is {pName}.</p> 
@@ -175,7 +175,7 @@ export default function Home() {
               <p>Pets: {pPets}.</p>
               <p>Their IP address is {pIPAddress}.</p>
               <p>Their social security number is {pSocialSecurity}.</p>
-              <p>Their Mother's Maiden Name is {pMothersMaidenName}</p>
+              <p>Their Mother's maiden name is {pMothersMaidenName}</p>
               <p>They are from {pBirthplace} and the name of the street that they grew up on is {pStreetGrewUpOn}.</p>
               <p>Their credit card number is {pCreditCardNumber}, the expiration date is {pCreditCardExpirationDate}, and the three numbers on the back are {pCreditCardCVC}.</p>
 
