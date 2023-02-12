@@ -14,10 +14,15 @@ export default function SocketHandler(req, res) {
 
   const onConnection = (socket) => {
     messageHandler(io, socket);
-    // actionHandler(io, socket);
 
     socket.on("createdAction", (act) => {
       socket.broadcast.emit("newIncomingAction", act);
+    });
+    socket.on("createdLevelUpRequest", (data) => {
+      socket.broadcast.emit("newLevelUpRequest", data);
+    });
+    socket.on("createdLevelUpConfirm", (data) => {
+      socket.broadcast.emit("newLevelUpConfirm", data);
     });
   };
 
