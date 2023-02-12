@@ -31,6 +31,7 @@ export default function Home() {
 
   const [level, setLevel] = useState(0);
   const [partnerRequest, setPartnerRequest] = useState(false);
+  const [partnerRequestData, setPartnerRequestData] = useState({});
   const [message, setMessage] = useState("");
 
   //Profile Personal Information
@@ -126,13 +127,14 @@ export default function Home() {
     socket.on("newLevelUpRequest", (data) => {
       console.log("recieved level up request");
       setPartnerRequest(true);
+      setPartnerRequestData(data);
     });
 
     socket.on("newLevelUpConfirm", (data) => {
       console.log("recieved confirmation of level up");
       setPartnerRequest(false);
       setLevel((oldLevel) => {
-        updateProfile(oldLevel + 1);
+        updateProfile(oldLevel + 1, data);
         return oldLevel + 1;
       });
     });
@@ -163,15 +165,22 @@ export default function Home() {
   const requestLevelUp = async () => {
     console.log("requesting level up");
 
+    let data = {}
+    if (level === 0) {
+      data["name"] = myProfile.name;
+    } else if (level === 1) {
+      data["email"] = myProfile.email;
+    }
+
     if (partnerRequest) {
       setPartnerRequest(false);
       setLevel((oldLevel) => {
-        updateProfile(oldLevel + 1);
+        updateProfile(oldLevel + 1, partnerRequestData);
         return oldLevel + 1;
       });
-      socket.emit("createdLevelUpConfirm", {});
+      socket.emit("createdLevelUpConfirm", data);
     } else {
-      socket.emit("createdLevelUpRequest", {});
+      socket.emit("createdLevelUpRequest", data);
     }
   };
 
@@ -179,7 +188,7 @@ export default function Home() {
     return Math.floor(Math.random() * (maxE - minI)) + minI;
   };
 
-  const updateProfile = (newLevel: number) => {
+  const updateProfile = (newLevel, data) => {
     // credit cards
     // social security
     // mother's maiden name
@@ -213,9 +222,9 @@ export default function Home() {
       setAge(fakeAge);
       setBirthday(`${randInt(1, 13)}/${randInt(1, 30)}/${123 - fakeAge}`);
     } else if (newLevel == 2) {
-      setEmail("wowthisissucha@gooddemo.com");
+      setEmail("email" in data ? data["email"] : "wowthisisagood@demo.com");
     } else if (newLevel == 1) {
-      setName("Ryan");
+      setName("name" in data ? data["name"] : "Ryan");
     }
   };
 
