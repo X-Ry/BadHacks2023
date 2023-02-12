@@ -5,11 +5,12 @@ import { useMyProfile } from "../utils/context/myProfileContext";
 type MyProfileDataFormType = {
   name: string;
   email: string;
-  phoneNumber: string;
 };
 
 export default function Home() {
-  const { register, handleSubmit } = useForm<MyProfileDataFormType>();
+  const { register, handleSubmit } = useForm<MyProfileDataFormType>({
+    shouldFocusError: true,
+  });
 
   const router = useRouter();
 
@@ -17,7 +18,7 @@ export default function Home() {
 
   const onSubmit = (data: MyProfileDataFormType, e) => {
     console.log(data);
-    myProfile.enterInfo(data.name, data.email, data.phoneNumber);
+    myProfile.enterInfo(data.name, data.email);
     router.push("chat");
   };
 
@@ -46,15 +47,6 @@ export default function Home() {
               placeholder="Email..."
               className="p-3 rounded-md outline-none"
               {...register("email", { required: true })}
-            />
-          </div>
-          <div>
-            <h3 className="font-bold text-white text-xl">Phone Number</h3>
-            <input
-              type="text"
-              placeholder="Phone Number..."
-              className="p-3 rounded-md outline-none"
-              {...register("phoneNumber", { required: true })}
             />
           </div>
           <button

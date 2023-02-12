@@ -10,6 +10,18 @@ type Message = {
   message: string;
 };
 
+type Action = {
+  type: ActionType;
+  data: string;
+};
+
+enum ActionType {
+  Popup,
+  Sound,
+  Dox,
+  GiftSwap
+};
+
 export default function Home() {
   const myProfile = useMyProfile();
 
@@ -36,6 +48,25 @@ export default function Home() {
         },
       ]);
     });
+
+    socket.on("newIncomingAction", (act: Action) => {
+      console.log("recieved action");
+      switch (act.type) {
+        case ActionType.Popup: {
+          alert("what's up");
+          break;
+        } case ActionType.Sound: {
+
+          break;
+        } case ActionType.Dox: {
+          
+          break;
+        } case ActionType.GiftSwap: {
+          
+          break;
+        }
+      }
+    });
   };
 
   const sendMessage = async () => {
@@ -48,6 +79,11 @@ export default function Home() {
     setMessages((currentMsg) => [...currentMsg, data]);
     setMessage("");
   };
+
+  const sendAction = async (at: ActionType) => {
+    socket.emit("createdAction", { type: at, data: "data" });
+    console.log("sending action");
+  }
 
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
