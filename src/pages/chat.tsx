@@ -112,7 +112,15 @@ export default function Home() {
             <div className="w-1/2 h-screen 
                               bg-cover bg-center bg-[url('https://i.ibb.co/L5xXrzj/istockphoto-486407276-612x612-transformed-1.jpg')]
                               justify-center">
-                <p className="font-bold text-center text-black text-xl">TAKE IT TO THE NEXT LEVEL</p>
+                {/* Button */}
+                <button className="pushable"
+                onClick={() => {
+                  console.log("this button works");
+                }}>
+                  <span className="front">
+                    TAKE IT TO THE NEXT LEVEL
+                  </span>
+                </button>
                 
             </div>
           </div>
