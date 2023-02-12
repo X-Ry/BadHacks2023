@@ -284,12 +284,12 @@ export default function Home() {
                 <div className="m-2">
                   <button 
                     key={i}
-                    className={partnerRequest ? "pushable-request" : "pushable"}
+                    className="pushable"
                     onClick={() => {
                       console.log("sending action: " + b.text);
                       sendAction(b.at);
                     }}>
-                      <span className={partnerRequest ? "front-request" : "front"}>
+                      <span className="front">
                         {b.text}
                       </span>
                   </button>
