@@ -21,6 +21,7 @@ enum ActionType {
   Sound,
   Dox,
   GiftSwap,
+  NotImplemented,
 }
 
 export default function Home() {
@@ -115,6 +116,10 @@ export default function Home() {
           console.log("items have been purchased using your account");
           break;
         }
+        case ActionType.NotImplemented: {
+          console.log("this action has not been implemented (it would have ruined your life)")
+          break;
+        }
       }
     });
 
@@ -171,6 +176,10 @@ export default function Home() {
     {text: "Sound Alarm", at: ActionType.Sound, threshold: 2},
     {text: "Dox Partner", at: ActionType.Dox, threshold: 3},
     {text: "Purchase Gift", at: ActionType.GiftSwap, threshold: 4},
+    {text: "Steal Identity", at: ActionType.NotImplemented, threshold: 5},
+    {text: "Scramble Hard-drive", at: ActionType.NotImplemented, threshold: 6},
+    {text: "Empty 401k", at: ActionType.NotImplemented, threshold: 7},
+
   ];
 
   return (
@@ -269,7 +278,7 @@ export default function Home() {
             </button>
 
             {actionButtons.map((b, i) => {
-              return (
+              return (level < b.threshold ? <div></div> :
                 <button 
                   key={i}
                   className={partnerRequest ? "pushable-request" : "pushable"}
