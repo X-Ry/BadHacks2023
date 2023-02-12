@@ -46,16 +46,21 @@ export default function Home() {
   const [pLat, setLat] = useState('███.█████"█');
   const [pIceCream, setIceCream] = useState("████████ ████ ██████");
   const [pPoliticalAlignment, setPoliticalAlignment] = useState("████████████");
-  const [pFamily, setFamily] = useState("██████████ ████████ ███ ███████ ██ ███████");
+  const [pFamily, setFamily] = useState(
+    "██████████ ████████ ███ ███████ ██ ███████"
+  );
   const [pPets, setPets] = useState("█████████ ████ █████████");
   const [pIPAddress, setIPAddress] = useState("███.███.██.██");
   const [pSocialSecurity, setSocialSecurity] = useState("███-██-████");
   const [pMothersMaidenName, setMothersMaidenName] = useState("███████");
   const [pStreetGrewUpOn, setStreetGrewUpOn] = useState("████████████");
-  const [pCreditCardNumber, setCreditCardNumber] = useState("█ █████ ██████ ████");
-  const [pCreditCardExpirationDate, setCreditCardExpirationDate] = useState("██/██");
+  const [pCreditCardNumber, setCreditCardNumber] = useState(
+    "█ █████ ██████ ████"
+  );
+  const [pCreditCardExpirationDate, setCreditCardExpirationDate] =
+    useState("██/██");
   const [pCreditCardCVC, setCreditCardCVC] = useState("███");
-  
+
   const [messages, setMessages] = useState<Array<Message>>([]);
 
   useEffect(() => {
@@ -156,30 +161,44 @@ export default function Home() {
   return (
     <div className="flex items-center mx-auto min-h-screen justify-center bg-green-500">
       <main className="w-full gap-4 flex flex-col items-center justify-center h-full">
-          <div className="w-full flex items-center mx-auto min-h-screen justify-center">
-            
-            <div className="w-1/2 h-screen bg-black text-green-500 p-2 font-mono overflow-auto">
-              <p className=" text-xl">Profile Info</p>
-              {/* add a photograph area here too */}
-              <p>Your Partner's name is {pName}.</p> 
-              <p>They are {pAge} years old, and were born on {pBirthday}.</p>
-              <p>Their gender is {pGender} and sexuality is {pSexuality}.</p>
-              <p>They currently live at the address {pAddress}.</p>
-              <p>They are a {pProfession} at {pWorkplace}.</p>
-              <p>Their phone number is {pPhone}.</p>
-              <p>Their email address is {pEmail}.</p>
-              <p>Longitude: {pLon}. Latitude: {pLat}.</p>
-              <p>Their favorite ice cream flavor is {pIceCream}.</p>
-              <p>Their political alignment is {pPoliticalAlignment}</p>
-              <p>Family: {pFamily}.</p>
-              <p>Pets: {pPets}.</p>
-              <p>Their IP address is {pIPAddress}.</p>
-              <p>Their social security number is {pSocialSecurity}.</p>
-              <p>Their Mother's maiden name is {pMothersMaidenName}</p>
-              <p>They are from {pBirthplace} and the name of the street that they grew up on is {pStreetGrewUpOn}.</p>
-              <p>Their credit card number is {pCreditCardNumber}, the expiration date is {pCreditCardExpirationDate}, and the three numbers on the back are {pCreditCardCVC}.</p>
-
-            </div>
+        <div className="w-full flex items-center mx-auto min-h-screen justify-center">
+          <div className="w-1/2 h-screen bg-black text-green-500 p-2 font-mono overflow-auto">
+            <p className=" text-xl">Profile Info</p>
+            {/* add a photograph area here too */}
+            <img src="/images/blank_profile_pic.jpeg" width="70px" />
+            <p>Your Partner's name is {pName}.</p>
+            <p>
+              They are {pAge} years old, and were born on {pBirthday}.
+            </p>
+            <p>
+              Their gender is {pGender} and sexuality is {pSexuality}.
+            </p>
+            <p>They currently live at the address {pAddress}.</p>
+            <p>
+              They are a {pProfession} at {pWorkplace}.
+            </p>
+            <p>Their phone number is {pPhone}.</p>
+            <p>Their email address is {pEmail}.</p>
+            <p>
+              Longitude: {pLon}. Latitude: {pLat}.
+            </p>
+            <p>Their favorite ice cream flavor is {pIceCream}.</p>
+            <p>Their political alignment is {pPoliticalAlignment}</p>
+            <p>Family: {pFamily}.</p>
+            <p>Pets: {pPets}.</p>
+            <p>Their IP address is {pIPAddress}.</p>
+            <p>Their social security number is {pSocialSecurity}.</p>
+            <p>Their Mother's maiden name is {pMothersMaidenName}</p>
+            <p>
+              They are from {pBirthplace} and the name of the street that they
+              grew up on is {pStreetGrewUpOn}.
+            </p>
+            <p>
+              Their credit card number is {pCreditCardNumber}, the expiration
+              date is {pCreditCardExpirationDate}, and the three numbers on the
+              back are {pCreditCardCVC}.
+            </p>
+          </div>
 
           <div className="w-1/2 h-screen bg-purple-500">
             <>
@@ -231,12 +250,16 @@ export default function Home() {
           >
             {/* Button */}
             <button
-              className="pushable"
+              className={partnerRequest ? "pushable-request" : "pushable"}
               onClick={() => {
                 requestLevelUp();
               }}
             >
-              <span className="front">TAKE IT TO THE NEXT LEVEL</span>
+              <span className={partnerRequest ? "front-request" : "front"}>
+                {partnerRequest
+                  ? "Your partner has taken it to the next level. WILL YOU?"
+                  : "TAKE IT TO THE NEXT LEVEL"}
+              </span>
             </button>
 
             <button
