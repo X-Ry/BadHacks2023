@@ -31,6 +31,7 @@ export default function Home() {
   const [level, setLevel] = useState(0);
   const [partnerRequest, setPartnerRequest] = useState(false);
   const [message, setMessage] = useState("");
+
   const [pName, setName] = useState("██████ ████████████");
   const [pAge, setAge] = useState("██");
   const [pBirthday, setBirthday] = useState("██/██/██");
@@ -93,12 +94,15 @@ export default function Home() {
           break;
         }
         case ActionType.Sound: {
+          console.log("LOUD SOUND");
           break;
         }
         case ActionType.Dox: {
+          console.log("get doxxed bro");
           break;
         }
         case ActionType.GiftSwap: {
+          console.log("items have been purchased using your account");
           break;
         }
       }
@@ -129,7 +133,6 @@ export default function Home() {
 
   const sendAction = async (at: ActionType) => {
     socket.emit("createdAction", { type: at, data: "data" });
-    console.log("sending action");
   };
 
   const requestLevelUp = async () => {
@@ -152,6 +155,13 @@ export default function Home() {
       }
     }
   };
+
+  const actionButtons = [
+    {text: "Send Alert", at: ActionType.Popup, threshold: 1},
+    {text: "Sound Alarm", at: ActionType.Sound, threshold: 2},
+    {text: "Dox Partner", at: ActionType.Dox, threshold: 3},
+    {text: "Purchase Gift", at: ActionType.GiftSwap, threshold: 4},
+  ];
 
   return (
     <div className="flex items-center mx-auto min-h-screen justify-center bg-green-500">
@@ -239,14 +249,19 @@ export default function Home() {
               <span className="front">TAKE IT TO THE NEXT LEVEL</span>
             </button>
 
-            <button
-              onClick={() => {
-                console.log("sending alert");
-                sendAction(ActionType.Popup);
-              }}
-            >
-              Send alert
-            </button>
+            {actionButtons.map((b, i) => {
+              return (
+                <button
+                  onClick={() => {
+                    console.log("sending action: " + b.text);
+                    sendAction(b.at);
+                  }}>
+                  {b.text}
+                </button>
+              );
+            })}
+
+            
           </div>
         </div>
       </main>
