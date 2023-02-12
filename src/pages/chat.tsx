@@ -165,7 +165,7 @@ export default function Home() {
   const requestLevelUp = async () => {
     console.log("requesting level up");
 
-    let data = {}
+    let data = {};
     if (level === 0) {
       data["name"] = myProfile.name;
     } else if (level === 1) {
@@ -200,8 +200,7 @@ export default function Home() {
     // name
 
     console.log("updating profile");
-
-    if (newLevel == 9) {
+    if (newLevel === 11) {
       setCreditCardCVC(randInt(100, 999));
       setCreditCardExpirationDate(`${randInt(1, 13)}/${randInt(23, 30)}`);
       setCreditCardNumber(
@@ -210,13 +209,17 @@ export default function Home() {
           9999
         )} ${randInt(1000, 9999)}`
       );
+    }
+    if (newLevel == 9) {
+      setLon("87.6753° W");
+      setLat("42.0565° N");
     } else if (newLevel == 8) {
     } else if (newLevel == 7) {
+      setIPAddress("127.0.0.1");
     } else if (newLevel == 6) {
     } else if (newLevel == 5) {
-      setPets("Mittins (cat)");
+      setMothersMaidenName("Magoo");
     } else if (newLevel == 4) {
-      setIPAddress("127.0.0.1");
     } else if (newLevel == 3) {
       const fakeAge = randInt(18, 60);
       setAge(fakeAge);
@@ -255,8 +258,8 @@ export default function Home() {
     <div className="flex items-center mx-auto min-h-screen justify-center bg-purple-500">
       <main className="w-full gap-4 flex flex-col items-center justify-center h-full">
         <div className="w-full flex items-center mx-auto min-h-screen justify-center">
-            <div className="w-1/2 h-screen bg-black text-green-500 m-4 p-2 font-mono overflow-auto">
-            <p className=" text-xl">Profile Info</p>
+          <div className="w-1/2 h-screen bg-black text-green-500 m-4 p-2 font-mono overflow-auto">
+            <p className=" text-xl">Partner Profile Info</p>
             {/* add a photograph area here too */}
             <p>Your Partner's name is {pName}.</p>
             <p>
