@@ -274,7 +274,7 @@ export default function Home() {
 
             {actionButtons.map((b, i) => {
               return (
-                <button
+                <button key={i}
                   onClick={() => {
                     console.log("sending action: " + b.text);
                     sendAction(b.at);
